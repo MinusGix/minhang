@@ -9,3 +9,4 @@ edition = "2021"
 glazier = { git = "https://github.com/linebender/glazier.git", rev = "8f3e6eae6ac83b505228c32a390779740d8948b4" }
 wgpu = "0.17.0"
 env_logger = "0.10"
+futures = "0.3.28"

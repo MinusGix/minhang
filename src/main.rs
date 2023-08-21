@@ -30,17 +30,26 @@ impl glazier::AppHandler for AppThing {
 pub fn init(window: &WindowHandle) {
     println!("Init");
     // Seems to default to GL
-    let instance = wgpu::Instance::default();
+    // let instance = wgpu::Instance::default();
     // Manually requiring Vulkan makes surface creation works
-    // let instance = wgpu::Instance::new(InstanceDescriptor {
-    //     backends: Backends::VULKAN,
-    //     ..Default::default()
-    // });
+    let instance = wgpu::Instance::new(InstanceDescriptor {
+        backends: Backends::VULKAN,
+        ..Default::default()
+    });
     println!("Made WGPU Instance");
 
     // Stalls if instance is gl
     let surface = unsafe { instance.create_surface(window) }.unwrap();
     println!("Made WGPU Surface");
+
+    let adapter =
+        futures::executor::block_on(instance.request_adapter(&wgpu::RequestAdapterOptions {
+            power_preference: wgpu::PowerPreference::default(),
+            compatible_surface: Some(&surface),
+            force_fallback_adapter: false,
+        }))
+        .unwrap();
+    println!("Got adapter");
 
     todo!()
 }
