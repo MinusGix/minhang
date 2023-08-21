@@ -1,0 +1,11 @@
+[package]
+name = "minhang"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+glazier = { git = "https://github.com/linebender/glazier.git", rev = "8f3e6eae6ac83b505228c32a390779740d8948b4" }
+wgpu = "0.17.0"
+env_logger = "0.10"
